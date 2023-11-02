@@ -16,8 +16,8 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
 
-    cards = {'A' : 1 , '2' : 2, '3': 3, '4' : 4, '5' : 5, '6' : 6,
-             '7' : 7, '8': 8, '9' : 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10 }
+    cards = {str(n): n for n in range(2, 11)}
+    cards.update({'A': 1, 'J': 10, 'Q': 10, 'K': 10})
     return cards[card]
 
 
@@ -50,7 +50,7 @@ def value_of_ace(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    if (card_one == 'A' or card_two == 'A'
+    if ('A' in [card_one, card_two]
         or not value_of_card(card_one) + value_of_card(card_two) <= 10):
         return 1
     return 11
@@ -68,7 +68,7 @@ def is_blackjack(card_one, card_two):
     """
 
     return ((value_of_card(card_one) == 10 or value_of_card(card_two) == 10)
-            and (card_one == 'A' or card_two == 'A'))
+            and ('A' in [card_one, card_two]))
 
 
 def can_split_pairs(card_one, card_two):
