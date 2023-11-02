@@ -16,7 +16,7 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
 
-    cards = {str(n): n for n in range(2, 11)}
+    cards = {str(num): num for num in range(2, 11)}
     cards.update({'A': 1, 'J': 10, 'Q': 10, 'K': 10})
     return cards[card]
 
@@ -67,7 +67,7 @@ def is_blackjack(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    return ((value_of_card(card_one) == 10 or value_of_card(card_two) == 10)
+    return (10 in [value_of_card(card_one), value_of_card(card_two)]
             and ('A' in [card_one, card_two]))
 
 
@@ -88,4 +88,4 @@ def can_double_down(card_one, card_two):
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
 
-    return 9 <= (value_of_card(card_one) + value_of_card(card_two)) <= 11
+    return 9 <= value_of_card(card_one) + value_of_card(card_two) <= 11
