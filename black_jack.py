@@ -16,9 +16,11 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
 
-    cards = {str(num): num for num in range(2, 11)}
-    cards.update({'A': 1, 'J': 10, 'Q': 10, 'K': 10})
-    return cards[card]
+    if card in 'JQK':
+        return 10
+    if card == 'A':
+        return 1
+    return int(card)
 
 
 def higher_card(card_one, card_two):
@@ -51,7 +53,7 @@ def value_of_ace(card_one, card_two):
     """
 
     if ('A' in [card_one, card_two]
-        or not value_of_card(card_one) + value_of_card(card_two) <= 10):
+        or value_of_card(card_one) + value_of_card(card_two) > 10):
         return 1
     return 11
 
@@ -67,7 +69,7 @@ def is_blackjack(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    return (10 in [value_of_card(card_one), value_of_card(card_two)]
+    return (10 in [value_of_card(card_one), value_of_card(card_two)] 
             and ('A' in [card_one, card_two]))
 
 
